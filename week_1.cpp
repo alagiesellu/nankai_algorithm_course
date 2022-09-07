@@ -22,7 +22,7 @@ void sortArray(int *array) {
 int readNumber() {
     int input;
 
-    while(true){
+    while(true) {
         cin >> input;
 
         if(cin.fail()) {
@@ -34,6 +34,7 @@ int readNumber() {
             break;
         }
     }
+
     return input;
 }
 
