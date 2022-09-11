@@ -25,7 +25,6 @@ int readNumber() {
         cin >> input;
 
         if(cin.fail()) {
-            cout << " * Wrong input, enter again: ";
             cin.clear();
             cin.ignore(INT_MAX, '\n');
         } else {
@@ -38,24 +37,22 @@ int readNumber() {
 
 int main() {
 
-    cout << "Enter Array Size : ";
+    cout << "Enter Size : ";
     int arraySize = readNumber();
 
     while (arraySize <= 1 || arraySize >= 1000) {
-        cout << " * Array size should be less than 1000, enter again: ";
         arraySize = readNumber();
     }
 
     int array[arraySize];
 
     for (int i = 0; i < arraySize; i++) {
-        cout << "Enter Element [" << i << "] : ";
         array[i] = readNumber();
     }
 
     sortArray(array, arraySize);
 
-    cout << endl << "Sorted Array : ";
+    cout << endl << "Sorted Array : " << endl;
     for (int i = 0; i < arraySize - 1; i++) {
         cout << array[i] << " ";
     }
