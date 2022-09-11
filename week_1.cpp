@@ -18,36 +18,20 @@ void sortArray(int *array, int arraySize) {
     }
 }
 
-int readNumber() {
-    int input;
-
-    while(true) {
-        cin >> input;
-
-        if(cin.fail()) {
-            cin.clear();
-            cin.ignore(INT_MAX, '\n');
-        } else {
-            break;
-        }
-    }
-
-    return input;
-}
-
 int main() {
 
     cout << "Enter Size : ";
-    int arraySize = readNumber();
+    int arraySize;
+    cin >> arraySize;
 
     while (arraySize <= 1 || arraySize >= 1000) {
-        arraySize = readNumber();
+        cin >> arraySize;
     }
 
     int array[arraySize];
 
     for (int i = 0; i < arraySize; i++) {
-        array[i] = readNumber();
+        cin >> array[i];
     }
 
     sortArray(array, arraySize);
