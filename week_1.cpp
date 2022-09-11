@@ -2,25 +2,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-/**
- * Bobble sort algorithm.
- * */
-void sortArray(int *array, int arraySize) {
-    int temp;
-    for (int i = 0; i < arraySize; i++) {
-        for (int j = i + 1; j < arraySize; j++) {
-            if (array[j] < array[i]) {
-                temp = array[i];
-                array[i] = array[j];
-                array[j] = temp;
-            }
-        }
-    }
-}
 
 int main() {
 
-    cout << "Enter Size : ";
+    cout << "Enter Size : " << endl;
     int arraySize;
     cin >> arraySize;
 
@@ -34,7 +19,16 @@ int main() {
         cin >> array[i];
     }
 
-    sortArray(array, arraySize);
+    int temp;
+    for (int i = 0; i < arraySize; i++) {
+        for (int j = i + 1; j < arraySize; j++) {
+            if (array[j] < array[i]) {
+                temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+        }
+    }
 
     cout << endl << "Sorted Array : " << endl;
     for (int i = 0; i < arraySize - 1; i++) {
