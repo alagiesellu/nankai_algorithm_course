@@ -5,7 +5,6 @@ using namespace std;
 
 int main() {
 
-    cout << "Enter Size : " << endl;
     int arraySize;
     cin >> arraySize;
 
@@ -30,7 +29,6 @@ int main() {
         }
     }
 
-    cout << endl << "Sorted Array : " << endl;
     for (int i = 0; i < arraySize - 1; i++) {
         cout << array[i] << " ";
     }
