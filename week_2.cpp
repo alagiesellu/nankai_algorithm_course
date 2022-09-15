@@ -42,9 +42,9 @@ void calculateRepetitions(const int* array, int& arraySize) {
         current = array[i];
         count = 1;
 
-        while (current == array[i + count]) {
+        while (current == array[i + count])
             count++;
-        }
+
         i += count;
 
         // if pass repetition count, print
@@ -60,7 +60,6 @@ void generateArray(int* array, int& arraySize) {
     for (int i = 0; i < arraySize; ++i) {
         array[i] = getIntegerInput();
     }
-    cout << endl;
 }
 
 int main() {

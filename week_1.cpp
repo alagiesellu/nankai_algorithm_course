@@ -26,8 +26,7 @@ using namespace std;
 
 int main() {
 
-    int arraySize;
-    cin >> arraySize;
+    int arraySize = 0;
 
     while (arraySize <= 1 || arraySize >= 1000) {
         cin >> arraySize;
