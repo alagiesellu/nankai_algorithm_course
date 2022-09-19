@@ -49,10 +49,8 @@ void calculateRepetitions(const int* array, int& arraySize) {
 
         // if pass repetition count, print
         if (count > repetitionCount)
-            cout << current << " ";
+            cout << current << endl;
     }
-
-    cout << endl;
 }
 
 void generateArray(int* array, int& arraySize) {
