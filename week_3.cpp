@@ -33,22 +33,16 @@ int getArraySize() {
     getline(cin, sizeInput);
     size = stoi(sizeInput);
 
-    while (size < 3 || size > 5000) {
-        cout << "Invalid array size – n ∈ [3, 5000)" << endl;
-        getline(cin, sizeInput);
-        size = stoi(sizeInput);
-    }
-
     return size;
 }
 
-void splitInputIntoArray(int* numbers, int& arraySize, string input)
+void splitInputIntoArray(int* numbers, int& arraySize, const string& input)
 {
     int spacePos, currPos = 0, prevPos = 0, i = 0;
     string number;
 
     do {
-        spacePos = input.find(" ", currPos);
+        spacePos = input.find(' ', currPos);
         if(spacePos >= 0) {
             currPos = spacePos;
             number = input.substr(prevPos, currPos - prevPos);
@@ -73,11 +67,11 @@ void getInputs(int* numbers, int& arraySize) {
 
 void calculateTriples(const int* numbers, int& arraySize) {
 
-    int count = 0;
+    int count = 0, a, b, c;
 
-    for (int a = 0; a < arraySize; a++) {
-        for (int b = a + 1; b < arraySize; b++) {
-            for (int c = b + 1; c < arraySize; c++) {
+    for (a = 0; a < arraySize; a++) {
+        for (b = a + 1; b < arraySize; b++) {
+            for (c = b + 1; c < arraySize; c++) {
                 if (numbers[a] + numbers[b] + numbers[c] == 0) {
                     count++;
                 }
