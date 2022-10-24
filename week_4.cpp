@@ -80,9 +80,16 @@ int main() {
 
     sort(answers.begin(), answers.end());
 
+    cout << "[";
+
+    int last_answer = answers.back();
+    answers.pop_back();
+
     for(int answer : answers) {
-        cout << answer << " ";
+        cout << answer << ",";
     }
+
+    cout << last_answer << "]";
 
     return 0;
 }
