@@ -22,10 +22,6 @@
 
 using namespace std;
 
-void getInputs(string &inputs) {
-    cin >> inputs;
-}
-
 vector<int> compute_expression(string& input, int start, int end){
 
     vector<int> answers;
@@ -72,7 +68,7 @@ int main() {
 
     string input;
 
-    getInputs(input);
+    cin >> input;
 
     int input_size = (int) input.size();
 
