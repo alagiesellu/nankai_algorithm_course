@@ -22,7 +22,7 @@
 
 using namespace std;
 
-vector<int> compute_expression(string& input, int start, int end){
+vector<int> compute_expression(string& input, int start, int end) {
 
     vector<int> answers;
 
