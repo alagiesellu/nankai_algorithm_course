@@ -16,7 +16,6 @@
 
 using namespace std;
 
-
 int kEggs, nFloors, floorF;
 int attempt = 0;
 bool floorFound = false;
@@ -25,23 +24,25 @@ vector<int> breakMemory;
 
 bool fallWillBreak(int xFloor) {
 
+    // if egg drop at floor x in memory
     if (breakMemory[xFloor - 1] != 0) {
         return breakMemory[xFloor - 1] == -1;
     }
 
+    // record egg drop attempt
     attempt++;
 
-    // will break
+    // if egg break at floor x
     if (xFloor > floorF) {
 
-        // record floor break
+        // remember that egg break at floor x
         breakMemory[xFloor - 1] = -1;
         kEggs--;
 
         return true;
     }
 
-    // record floor do not break
+    // remember that egg do not break at floor x
     breakMemory[xFloor - 1] = 1;
 
     return false;
