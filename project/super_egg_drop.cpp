@@ -16,50 +16,65 @@
 
 using namespace std;
 
+#define EGG_BROKE -1
+#define EGG_ALIVE 1
+#define EGG_UNKNOWN 0
+
 int kEggs, nFloors, floorF;
 int attempt = 0;
 bool floorFound = false;
 
 vector<int> breakMemory;
 
-bool fallWillBreak(int xFloor) {
-
-    // if egg drop at floor x in memory
-    if (breakMemory[xFloor - 1] != 0) {
-        return breakMemory[xFloor - 1] == -1;
-    }
+bool attemptDrop(int xFloor) {
 
     // record egg drop attempt
     attempt++;
 
     // if egg break at floor x
-    if (xFloor > floorF) {
+    return xFloor > floorF;
+}
+
+bool fallAndBreak(int xFloor) {
+
+    int xFloorIndex = xFloor - 1;
+
+    // if egg drop at floor x in memory
+    if (breakMemory[xFloorIndex] != EGG_UNKNOWN) {
+        return breakMemory[xFloorIndex] == EGG_BROKE;
+    }
+
+    // if egg break at floor x
+    if (attemptDrop(xFloor)) {
 
         // remember that egg break at floor x
-        breakMemory[xFloor - 1] = -1;
+        breakMemory[xFloorIndex] = EGG_BROKE;
         kEggs--;
 
         return true;
     }
 
     // remember that egg do not break at floor x
-    breakMemory[xFloor - 1] = 1;
+    breakMemory[xFloorIndex] = EGG_ALIVE;
 
     return false;
 }
 
 bool findEggBreakFloor(int xFloor) {
 
-    if (! fallWillBreak(xFloor)) { // did not break at x
+    if (! fallAndBreak(xFloor)) { // did not break at x
         int xPlus = xFloor + 1;
 
-        if (fallWillBreak(xPlus)) { // break at x plus
+        if (fallAndBreak(xPlus)) { // break at x plus
             floorFound = true;
         }
 
         return true; // egg X alive
 
-    } else if (xFloor > 1 && ! fallWillBreak(xFloor - 1)) {  // break at x and did not break at x minus
+    }
+
+    // floor below and break at x and did not break at x minus
+    else if (xFloor > 1 && ! fallAndBreak(xFloor - 1)) {
         floorFound = true;
     }
 
@@ -71,18 +86,18 @@ void eggDrop() {
     int min = 1, max = nFloors;
     int xFloor = min + ((max - min) / 2);
 
-    bool eggXAlive = findEggBreakFloor(xFloor);
+    bool eggAlive = findEggBreakFloor(xFloor);
 
     while (! floorFound && kEggs > 1) {
 
-        if (eggXAlive) {
+        if (eggAlive) {
             min = xFloor;
         } else {
             max = xFloor;
         }
 
         xFloor = min + ((max - min) / 2);
-        eggXAlive = findEggBreakFloor(xFloor);
+        eggAlive = findEggBreakFloor(xFloor);
     }
 
     while (! floorFound) {
