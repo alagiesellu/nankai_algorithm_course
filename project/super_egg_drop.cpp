@@ -12,26 +12,21 @@
 **/
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
 
 int kEggs, nFloors, floorF;
 int attempt = 0;
-int *breakMemory;
+bool floorFound = false;
 
-int eggDrop() {
-
-    if (floorF == 1)
-        return 1;
-
-    return 0;
-}
+vector<int> breakMemory;
 
 bool fallWillBreak(int xFloor) {
 
-    if (breakMemory[xFloor] != 0) {
-        return breakMemory[xFloor] == -1;
+    if (breakMemory[xFloor - 1] != 0) {
+        return breakMemory[xFloor - 1] == -1;
     }
 
     attempt++;
@@ -40,48 +35,78 @@ bool fallWillBreak(int xFloor) {
     if (xFloor > floorF) {
 
         // record floor break
-        breakMemory[xFloor] = -1;
+        breakMemory[xFloor - 1] = -1;
         kEggs--;
 
         return true;
     }
 
     // record floor do not break
-    breakMemory[xFloor] = 1;
+    breakMemory[xFloor - 1] = 1;
 
     return false;
 }
 
-int findEggBreakFloor(int xFloor) {
+bool findEggBreakFloor(int xFloor) {
 
-    if (! fallWillBreak(xFloor)) {
-        int x = xFloor + 1;
+    if (! fallWillBreak(xFloor)) { // did not break at x
+        int xPlus = xFloor + 1;
 
-        if (fallWillBreak(x))
-            return x;
+        if (fallWillBreak(xPlus)) { // break at x plus
+            floorFound = true;
+        }
+
+        return true; // egg X alive
+
+    } else if (xFloor > 1 && ! fallWillBreak(xFloor - 1)) {  // break at x and did not break at x minus
+        floorFound = true;
     }
 
-    return -1;
+    return false; // egg X broke
+}
+
+void eggDrop() {
+
+    int min = 1, max = nFloors;
+    int xFloor = min + ((max - min) / 2);
+
+    bool eggXAlive = findEggBreakFloor(xFloor);
+
+    while (! floorFound && kEggs > 1) {
+
+        if (eggXAlive) {
+            min = xFloor;
+        } else {
+            max = xFloor;
+        }
+
+        xFloor = min + ((max - min) / 2);
+        eggXAlive = findEggBreakFloor(xFloor);
+    }
+
+    while (! floorFound) {
+        findEggBreakFloor(min);
+        min++;
+    }
 }
 
 int main() {
 
-    cout << "Enter the number of eggs = ";
+    cout << "Enter the number of eggs:";
     cin >> kEggs;
 
-    cout << "Enter the number of floors = ";
+    cout << "Enter the number of floors:";
     cin >> nFloors;
 
 
-    cout << "Enter the floor number = ";
+    cout << "Enter the break floor number:";
     cin >> floorF;
 
+    breakMemory = vector<int>(nFloors, 0);
 
-    breakMemory = new int[nFloors];
+    eggDrop();
 
-    int min = eggDrop();
-
-    cout << min;
+    cout << "Attempt is " << attempt;
 
     return 0;
 }
