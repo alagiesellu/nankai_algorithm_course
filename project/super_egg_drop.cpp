@@ -15,13 +15,73 @@
 
 using namespace std;
 
+
+int kEggs, nFloors, floorF;
+int attempt = 0;
+int *breakMemory;
+
+int eggDrop() {
+
+    if (floorF == 1)
+        return 1;
+
+    return 0;
+}
+
+bool fallWillBreak(int xFloor) {
+
+    if (breakMemory[xFloor] != 0) {
+        return breakMemory[xFloor] == -1;
+    }
+
+    attempt++;
+
+    // will break
+    if (xFloor > floorF) {
+
+        // record floor break
+        breakMemory[xFloor] = -1;
+        kEggs--;
+
+        return true;
+    }
+
+    // record floor do not break
+    breakMemory[xFloor] = 1;
+
+    return false;
+}
+
+int findEggBreakFloor(int xFloor) {
+
+    if (! fallWillBreak(xFloor)) {
+        int x = xFloor + 1;
+
+        if (fallWillBreak(x))
+            return x;
+    }
+
+    return -1;
+}
+
 int main() {
 
-    int kEggs, nFloors;
-
+    cout << "Enter the number of eggs = ";
     cin >> kEggs;
 
+    cout << "Enter the number of floors = ";
     cin >> nFloors;
+
+
+    cout << "Enter the floor number = ";
+    cin >> floorF;
+
+
+    breakMemory = new int[nFloors];
+
+    int min = eggDrop();
+
+    cout << min;
 
     return 0;
 }
