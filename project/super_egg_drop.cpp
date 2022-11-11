@@ -65,7 +65,7 @@ bool findEggBreakFloor(int xFloor) {
     if (! fallAndBreak(xFloor)) { // did not break at x
         int xPlus = xFloor + 1;
 
-        if (fallAndBreak(xPlus)) { // break at x plus
+        if (fallAndBreak(xPlus)) { // break at floor next to x
             floorFound = true;
         }
 
@@ -73,7 +73,7 @@ bool findEggBreakFloor(int xFloor) {
 
     }
 
-    // floor below and break at x and did not break at x minus
+    // floor below and break at x and did not break at floor below x
     else if (xFloor > 1 && ! fallAndBreak(xFloor - 1)) {
         floorFound = true;
     }
@@ -106,23 +106,39 @@ void eggDrop() {
     }
 }
 
+int getIntInput(string message) {
+
+    int input;
+    bool valid= false;
+
+    do
+    {
+        cout << message << flush;
+        cin >> input;
+        if (cin.good()) {
+            valid = true;
+        } else {
+            cin.clear();
+            cout << "Invalid input; please re-enter." << endl;
+        }
+    } while (!valid);
+
+    return input;
+}
+
 int main() {
 
-    cout << "Enter the number of eggs:";
-    cin >> kEggs;
+    kEggs = getIntInput("Enter the number of eggs:");
 
-    cout << "Enter the number of floors:";
-    cin >> nFloors;
+    nFloors = getIntInput("Enter the number of floors:");
 
+    floorF = getIntInput("Enter the break floor number:");
 
-    cout << "Enter the break floor number:";
-    cin >> floorF;
-
-    breakMemory = vector<int>(nFloors, 0);
+    breakMemory = vector<int>(nFloors, EGG_UNKNOWN);
 
     eggDrop();
 
-    cout << "Attempt is " << attempt;
+    cout << "Attempt: " << attempt;
 
     return 0;
 }
