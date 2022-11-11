@@ -16,7 +16,7 @@
 
 using namespace std;
 
-#define EGG_BROKE -1
+#define EGG_BROKE (-1)
 #define EGG_ALIVE 1
 #define EGG_UNKNOWN 0
 
@@ -70,7 +70,6 @@ bool findEggBreakFloor(int xFloor) {
         }
 
         return true; // egg X alive
-
     }
 
     // floor below and break at x and did not break at floor below x
@@ -83,12 +82,13 @@ bool findEggBreakFloor(int xFloor) {
 
 void eggDrop() {
 
-    int min = 1, max = nFloors;
-    int xFloor = min + ((max - min) / 2);
+    breakMemory = vector<int>(nFloors, EGG_UNKNOWN);
 
-    bool eggAlive = findEggBreakFloor(xFloor);
+    bool eggAlive = true;
 
-    while (! floorFound && kEggs > 1) {
+    int min = 1, max = nFloors, xFloor = 1;
+
+    while (! floorFound && kEggs > 3) {
 
         if (eggAlive) {
             min = xFloor;
@@ -106,15 +106,14 @@ void eggDrop() {
     }
 }
 
-int getIntInput(string message) {
+void getIntegerInput(int& input, const string& message) {
 
-    int input;
-    bool valid= false;
+    bool valid = false;
 
-    do
-    {
+    do {
         cout << message << flush;
         cin >> input;
+
         if (cin.good()) {
             valid = true;
         } else {
@@ -122,19 +121,15 @@ int getIntInput(string message) {
             cout << "Invalid input; please re-enter." << endl;
         }
     } while (!valid);
-
-    return input;
 }
 
 int main() {
 
-    kEggs = getIntInput("Enter the number of eggs:");
+    getIntegerInput(kEggs, "Enter the number of eggs:");
 
-    nFloors = getIntInput("Enter the number of floors:");
+    getIntegerInput(nFloors, "Enter the number of floors:");
 
-    floorF = getIntInput("Enter the break floor number:");
-
-    breakMemory = vector<int>(nFloors, EGG_UNKNOWN);
+    getIntegerInput(floorF, "Enter the break floor number:");
 
     eggDrop();
 
