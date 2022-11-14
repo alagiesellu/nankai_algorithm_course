@@ -1,21 +1,18 @@
-/** Exercise 5
+/** Exercise 6
  *
-    ■ Maximum Subarray
+    ■ Longest Nice Substring
 
     ■ Description
-        – Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.
-        – A subarray is a contiguous part of an array.
-        – If you have figured out the O(n) solution, try coding another solution using the divide and conquer approach, which is more subtle.
+    A string s is nice if, for every letter of the alphabet that s contains, it appears both in uppercase and
+    lowercase. For example, "abABB" is nice because 'A' and 'a' appear, and 'B' and 'b' appear. However, "abA" is not
+    because 'b' appears, but 'B' does not.
 
     ■ Input
-        – The first line of the input is an integer n, which is the length of array.
-        – Each of the next n lines contains a single integer in the array.
+    A string s
 
     ■ Output
-        – The largest sum of the contiguous subarray.
-
-    ■ Deadline
-        – 2022-10-11 23:59:00 GMT+8
+    Return the longest substring of 𝑠 that is nice. If there are multiple, return the substring of the earliest
+    occurrence. If there are none, return "none".
 
  * */
 #include <bits/stdc++.h>

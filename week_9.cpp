@@ -1,22 +1,34 @@
 /** Exercise 5
  *
-    ■ Maximum Subarray
+    ■ Luggage Problem
 
     ■ Description
-        – Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.
-        – A subarray is a contiguous part of an array.
-        – If you have figured out the O(n) solution, try coding another solution using the divide and conquer approach, which is more subtle.
+    – Tom is planning a trip. His luggage can hold at most 𝑀 kg. He has 𝑁 items weighing 𝑊!,𝑊",𝑊#,…,𝑎𝑛𝑑 𝑊$, respectively.
+    The values of the items are 𝑉!,𝑉",𝑉#,…,𝑎𝑛𝑑 𝑉 $, respectively. – Please give the maximum value of the items he can take.
 
     ■ Input
-        – The first line of the input is an integer n, which is the length of array.
-        – Each of the next n lines contains a single integer in the array.
 
-    ■ Output
-        – The largest sum of the contiguous subarray.
+– The first line includes two integers, 𝑀 and 𝑁, indicating the
 
-    ■ Deadline
-        – 2022-10-11 23:59:00 GMT+8
+maximum capacity of the luggage and the number of items,
 
+respectively.
+
+– Lines 2 to 𝑁 +1: each line contains two integers,
+
+𝑊
+
+!,𝑎𝑛𝑑 𝑉
+
+!,indicating the weight and the value of each item,
+
+respectively.
+
+■ Output
+
+– Print an integer indicating the maximum value of the items
+
+he can take.
  * */
 #include <bits/stdc++.h>
 #include <iostream>

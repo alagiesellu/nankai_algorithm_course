@@ -1,21 +1,23 @@
 /** Exercise 5
  *
-    ■ Maximum Subarray
+
+    ■ Greedy Mouse
 
     ■ Description
-        – Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.
-        – A subarray is a contiguous part of an array.
-        – If you have figured out the O(n) solution, try coding another solution using the divide and conquer approach, which is more subtle.
+    A fat mouse prepared 𝑀 pounds of cat food, and was ready to trade with the cats guarding the warehouse
+    containing his favorite food : peanut. The warehouse has 𝑁 rooms. The 𝑖th room contains 𝑊[𝑖] pounds of
+    peanut and requires 𝐹[𝑖] pounds of cat food. The fat mouse does not have to trade for all the peanut in
+    the room, instead, he may get 𝑊[𝑖]∗𝑎%pounds of peanut if he pays 𝐹[𝑖]∗ 𝑎%pounds of cat food.
+    The mouse is a greedy mouse, so can you tell him the maximum amount of peanut he can obtain?
 
     ■ Input
-        – The first line of the input is an integer n, which is the length of array.
-        – Each of the next n lines contains a single integer in the array.
+    – The input consists of multiple test cases. Each test case begins with a line containing two non-negative
+    integers 𝑀 and 𝑁. Then 𝑁 lines follow, each contains two non-negative integers 𝑊[𝑖] and 𝐹[𝑖], respectively.
+    The test case is terminated by two -1. All integers are not greater than 1000.
 
     ■ Output
-        – The largest sum of the contiguous subarray.
-
-    ■ Deadline
-        – 2022-10-11 23:59:00 GMT+8
+    – For each test case, print in a single line a real number with up to three decimal places, which is the maximum
+    amount of peanut that the fat mouse can obtain.
 
  * */
 #include <bits/stdc++.h>
