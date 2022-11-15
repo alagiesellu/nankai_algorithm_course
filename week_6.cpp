@@ -15,25 +15,55 @@
     occurrence. If there are none, return "none".
 
  * */
-#include <bits/stdc++.h>
 #include <iostream>
 #include <string>
 
 using namespace std;
 
-void getInputs(string &inputs) {
-    cin >> inputs;
+char getPair(char character) {
+    return isupper(character) ? tolower(character) : toupper(character);
+}
+
+bool isNice(string& sub_string) {
+    char pair;
+    for (int i = 0; i < sub_string.length(); i++) {
+        pair = getPair(sub_string[i]);
+
+        if (sub_string.find(pair) == string::npos)
+            return false;
+    }
+    return true;
+}
+
+string findNiceString(string& input) {
+
+    int max_index = input.length() - 1;
+    string
+        sub_string,
+        longest_nice;
+
+    for (int i = 0; i <= max_index; i++) {
+        for (int j = max_index; i < j; j--) {
+
+            sub_string = input.substr(i, j - i + 1);
+
+            if (isNice(sub_string) && sub_string.length() > longest_nice.length())
+                longest_nice = sub_string;
+        }
+    }
+
+    return longest_nice.empty() ? "none" : longest_nice;
 }
 
 int main() {
 
     string input;
 
-    getInputs(input);
+    getline(cin, input);
 
-    // Here
+    string niceString = findNiceString(input);
 
-    cout << endl;
+    cout << niceString;
 
     return 0;
 }
